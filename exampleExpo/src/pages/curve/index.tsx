@@ -82,7 +82,7 @@ function Index() {
           const scale = interpolate(
             value,
             [-2, -1, 0, 1, 2],
-            [1.7, 1.2, 1, 1.2, 1.7],
+            [0.8, 1, 1, 1, 0.8],
             Extrapolate.CLAMP,
           );
 
@@ -92,6 +92,13 @@ function Index() {
             [-size * 1.45, -size * 0.9, 0, size * 0.9, size * 1.45],
           );
 
+          const rotateY = interpolate(
+            value,
+            [-1, 0, 1],
+            [65, 0, -65],
+            Extrapolate.CLAMP,
+          );
+
           const transform = {
             transform: [
               { scale },
@@ -99,14 +106,7 @@ function Index() {
                 translateX: translate,
               },
               { perspective: 150 },
-              {
-                rotateY: `${interpolate(
-                  value,
-                  [-1, 0, 1],
-                  [30, 0, -30],
-                  Extrapolate.CLAMP,
-                )}deg`,
-              },
+              { rotateY: `${rotateY}deg` },
             ],
           };
 
